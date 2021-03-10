@@ -1,0 +1,10 @@
+{% if employee_details %}
+    {% for employee in employee_details %}
+        <h3>id: {{employee.id}}</h3>
+        <h3>name: {{employee.name}}</h3>
+        <h3>sal: {{employee.sal}}</h3>
+        </br>
+    {% endfor %}
+{% else %}
+    <h3>No employee details found</h3>
+{% endif %}
