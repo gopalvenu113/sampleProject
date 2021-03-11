@@ -1,6 +1,6 @@
 {% if employee_details %}
     {% for employee in employee_details %}
-        <h3>id: {{employee.id}}</h3>
+        <h3><a href='http://localhost:7000/info/home/{{ employee.id }}'>id: {{employee.id}}</a>   <a href='http://localhost:7000/info/home/delete/{{ employee.id }}'>delete</a>   <a href='http://localhost:7000/info/home/update_form/{{ employee.id }}'>update</a></h3>
         <h3>name: {{employee.name}}</h3>
         <h3>sal: {{employee.sal}}</h3>
         </br>
@@ -8,3 +8,5 @@
 {% else %}
     <h3>No employee details found</h3>
 {% endif %}
+
+<a href='http://localhost:7000/info/create_form'>Create New Employee</a>

@@ -19,6 +19,6 @@ from info import urls as info_urls
 
 
 urlpatterns = [
-    path('info/', include(info_urls)),
+    path('info/', include((info_urls, 'info'), namespace='info')),
     path('admin/', admin.site.urls),
 ]

@@ -1,0 +1,11 @@
+<h3>Create Employee</h3>
+<form action="{% url 'info:create_emp' %}" method="post">
+    {% csrf_token %}
+    <label for="emp_name">Enter Name</label>
+    <input type="text" name="name" id="emp_name">
+    <br>
+    <label for="emp_sal">Enter Salary</label>
+    <input type="number" name="sal" id="emp_sal">
+    <br>
+    <input type="submit" value="submit">
+</form>
