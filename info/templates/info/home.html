@@ -1,3 +1,5 @@
+<a href="http://localhost:7000/info/home">Home</a>
+</br>
 {% if employee_details %}
     {% for employee in employee_details %}
         <h3><a href='http://localhost:7000/info/home/{{ employee.id }}'>id: {{employee.id}}</a>   <a href='http://localhost:7000/info/home/delete/{{ employee.id }}'>delete</a>   <a href='http://localhost:7000/info/home/update_form/{{ employee.id }}'>update</a></h3>

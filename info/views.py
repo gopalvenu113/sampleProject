@@ -11,8 +11,13 @@ def my_index(request):
 
 
 def my_detailed_view(request, emp_id):
-    employee = Employee.objects.filter(id=emp_id)
-    return render(request, 'info/home.html', context={'employee_details': employee})
+    try:
+        employee = Employee.objects.filter(id=emp_id)
+        if employee.exists():
+            return render(request, 'info/home.html', context={'employee_details': employee})
+        raise Exception("Employee not found in the database")
+    except Exception as e:
+        return render(request, 'info/info.html', context={'info': str(e)})
 
 
 # def end_page(request):
@@ -36,15 +41,16 @@ def create_emp(request):
 
 def delete_view(request, emp_id):
     Employee.objects.filter(id=emp_id).delete()
-    # return HttpResponseRedirect(reverse('info:my_index_view'))
-    employee_list = Employee.objects.values('id', 'name', 'sal')
-    return render(request, 'info/home.html', context={'employee_details': employee_list})
+    return HttpResponseRedirect(reverse('info:my_index_view'))
+    # employee_list = Employee.objects.values('id', 'name', 'sal')
+    # return render(request, 'info/home.html', context={'employee_details': employee_list})
 
 def update_view(request, emp_id):
     emp = Employee.objects.filter(id=emp_id).last()
     name = request.POST.get('name', emp.name)
     sal = request.POST.get('sal', emp.sal)
-    emp.name = name
-    emp.sal = sal
-    emp.save()
+    Employee.objects.filter(id=emp_id).update(name=name, sal=sal)
+    # emp.name = name
+    # emp.sal = sal
+    # emp.save()
     return HttpResponseRedirect(reverse('info:my_detailed_view', args=(emp.id,)))
